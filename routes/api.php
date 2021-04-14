@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UsuarioController;
 
 
 /*
@@ -26,5 +27,14 @@ use App\Http\Controllers\MovieController;
 
 //Rutas de moviecontroller
 
-Route::get('/allmovies', [MovieController::class, 'listaTodasLasPeliculas']);
-Route::get('/newmovie', [MovieController::class, 'registraPelicula']);
+// Route::get('/allmovies', [MovieController::class, 'listaTodasLasPeliculas']);
+// Route::get('/newmovie', [MovieController::class, 'registraPelicula']);
+
+//Rutas controladoras de Usuario 
+
+Route::get('/perfil/{nickname}', [UsuarioController::class, 'usuarioNombre']);
+Route::post('/register', [UsuarioController::class, 'registerUser']);
+Route::put('/update', [UsuarioController::class, 'modifyUser']);
+Route::delete('/borrar', [UsuarioController::class, 'deleteUser']);
+
+//Rutas controladoras de Post
