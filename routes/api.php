@@ -32,6 +32,8 @@ use App\Http\Controllers\UsuarioController;
 
 //Rutas controladoras de Usuario 
 
+Route::post('/login', [UsuarioController::class, 'loginUsuario']);
+Route::post('/logout', [UsuarioController::class, 'logOut'])->middleware('token');
 Route::get('/perfil/{nickname}', [UsuarioController::class, 'usuarioNombre']);
 Route::post('/register', [UsuarioController::class, 'registerUser']);
 Route::put('/update', [UsuarioController::class, 'modifyUser']);

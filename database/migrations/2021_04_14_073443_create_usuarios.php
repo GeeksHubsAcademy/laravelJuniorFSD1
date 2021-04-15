@@ -19,6 +19,7 @@ class CreateUsuarios extends Migration
             $table->string('nombre')->nullable();
             $table->string('password');
             $table->string('email')->unique();
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }

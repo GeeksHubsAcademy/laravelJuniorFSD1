@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre','password','email','nickname'];
+    protected $fillable = ['nombre','password','email','nickname','token'];
 
     //Relación uno a muchos de usuario hacia posts
     public function posts () {
