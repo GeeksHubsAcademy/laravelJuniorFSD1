@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PostController;
 
 
 /*
@@ -40,3 +41,6 @@ Route::put('/update', [UsuarioController::class, 'modifyUser']);
 Route::delete('/borrar', [UsuarioController::class, 'deleteUser']);
 
 //Rutas controladoras de Post
+
+Route::get('/searchpost/{parametro1}', [PostController::class, 'busquedaVariada']);
+Route::post('/searchfilter', [PostController::class, 'busquedaFiltrada']);
