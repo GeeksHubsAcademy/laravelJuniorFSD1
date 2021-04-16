@@ -31,17 +31,21 @@ use App\Http\Controllers\PostController;
 // Route::get('/allmovies', [MovieController::class, 'listaTodasLasPeliculas']);
 // Route::get('/newmovie', [MovieController::class, 'registraPelicula']);
 
-//Rutas controladoras de Usuario 
+Route::group(['middleware' => ['cors']], function () {
 
-Route::post('/login', [UsuarioController::class, 'loginUsuario']);
-Route::post('/logout', [UsuarioController::class, 'logOut'])->middleware('token');
-Route::get('/perfil/{nickname}', [UsuarioController::class, 'usuarioNombre']);
-Route::post('/register', [UsuarioController::class, 'registerUser']);
-Route::put('/update', [UsuarioController::class, 'modifyUser']);
-Route::delete('/borrar', [UsuarioController::class, 'deleteUser']);
+    //Rutas controladoras de Usuario 
 
-//Rutas controladoras de Post
+    Route::post('/login', [UsuarioController::class, 'loginUsuario']);
+    Route::post('/logout', [UsuarioController::class, 'logOut'])->middleware('token');
+    Route::get('/perfil/{nickname}', [UsuarioController::class, 'usuarioNombre']);
+    Route::post('/register', [UsuarioController::class, 'registerUser']);
+    Route::put('/update', [UsuarioController::class, 'modifyUser']);
+    Route::delete('/borrar', [UsuarioController::class, 'deleteUser']);
 
-Route::get('/allPosts', [PostController::class, 'cuentaPosts']);
-Route::get('/searchpost/{parametro1}', [PostController::class, 'busquedaVariada']);
-Route::post('/searchfilter', [PostController::class, 'busquedaFiltrada']);
+    //Rutas controladoras de Post
+
+    Route::get('/allPosts', [PostController::class, 'cuentaPosts']);
+    Route::get('/searchpost/{parametro1}', [PostController::class, 'busquedaVariada']);
+    Route::post('/searchfilter', [PostController::class, 'busquedaFiltrada']);
+
+});

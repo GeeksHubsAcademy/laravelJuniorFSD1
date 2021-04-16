@@ -54,4 +54,13 @@ class PostController extends Controller
         return Post::where('id', 'LIKE', $identificador)->get();
 
     }
+
+    public function searchPartyGameName($gameName){
+
+        return Partida::selectRaw('partida.id, game.id AS idgame, game.nombre')
+        ->join('games', 'games.id', '=', 'partida.game_id')
+        ->where('games.nombre', 'LIKE', $gameName)
+        ->get();
+
+    }
 }

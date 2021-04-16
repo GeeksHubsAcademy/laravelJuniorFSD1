@@ -19,9 +19,15 @@ class Token
      */
     public function handle(Request $request, Closure $next)
     {
-        
+        //Obtenemos datos del body
         $token = $request->input('token');
         $id = $request->input('id');
+
+        //Obtenemos el token del header
+        // $tokenDelHeader = $request->header('Authorization');
+
+        
+        $tokenDelHeader = $request->bearerToken();
 
         try {
 
