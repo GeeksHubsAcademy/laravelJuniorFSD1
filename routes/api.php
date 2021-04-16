@@ -42,5 +42,6 @@ Route::delete('/borrar', [UsuarioController::class, 'deleteUser']);
 
 //Rutas controladoras de Post
 
+Route::get('/allPosts', [PostController::class, 'cuentaPosts']);
 Route::get('/searchpost/{parametro1}', [PostController::class, 'busquedaVariada']);
 Route::post('/searchfilter', [PostController::class, 'busquedaFiltrada']);

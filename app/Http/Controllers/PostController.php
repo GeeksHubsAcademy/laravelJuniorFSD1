@@ -23,12 +23,20 @@ class PostController extends Controller
         $titulo = $request->input('titulo');
         $text = $request->input('text');
         $image_link = $request->input('image_link');
+        $fecha_post = $request->input('fecha_post');
+
 
         return Post::when($titulo, function($query, $titulo) {
             return $query->where('titulo', 'LIKE', $titulo);
         })
         ->when($text, function($query, $text) {
-            return $query->where('text', 'LIKE', $text);
+            return $query->where('text', 'LIKE', "%{$text}%");
+        })
+        ->when($fecha_post, function ($query, $fecha_post) {
+            return $query->orderBy('fecha_publi', 'ASC');
+        })
+        ->when($fecha_post, function ($query, $fecha_post) {
+            $query->where('fecha_publi', '>=', $fecha_post);
         })
         ->when($image_link, function($query, $image_link) {
             return $query->where('image_link', 'LIKE', $image_link);
@@ -36,31 +44,14 @@ class PostController extends Controller
         ->get();
 
     }
+
+    public function cuentaPosts(){
+        return Post::all()->count();
+    }
+
+    public function mensajesParty($identificador){
+
+        return Post::where('id', 'LIKE', $identificador)->get();
+
+    }
 }
-
-
-/*
-
-return Oferta::selectRaw('ofertas.* , empresas.name, empresas.picture')
-        ->join('empresas', 'ofertas.idempresa', '=', 'empresas.id')
-        ->when($activas, function ($query, $activas) {
-            return $query->where('isActive', '=', $activas);
-        })
-        ->when($orden, function ($query, $orden) {
-            return $query->orderBy('fecha_publi', 'DESC');
-        })
-        ->when($estado, function ($query, $estado) {
-            return $query->where('estado', '=', $estado);
-        })
-        ->when($keyword, function ($query, $keyword) {
-            return $query->where('desc_general', 'LIKE', "%{$keyword}%");
-        })
-        ->where('idempresa', '=',$id)
-        ->get();
-
-
-
-
-
-
-*/
